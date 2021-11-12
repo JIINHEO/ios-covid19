@@ -23,14 +23,76 @@ class ViewController: UIViewController {
             guard let self = self else {return}
             switch result {
             case let .success(result):
-                debugPrint("sucess \(result)")
+                // Alamofire completionHandler 핸들러는 메인스레드에서 작동하기 때문에
+                // 따로 메인 디스패치큐를 안만들어도 됨
+                self.configureStackView(koreaCovidOverview: result.korea)
+                let covidOverviewList = self.makeCovidOverviewList(cityCovidOverview: result)
+                self.configureChartView(covidOverviewList: covidOverviewList)
+                
                 
             case let .failure(error):
                 debugPrint("error \(error)")
             }
-            
         })
-        // Do any additional setup after loading the view.
+    }
+    
+    func makeCovidOverviewList(cityCovidOverview: CityCovidOverview) -> [CovidOverview] {
+        return [
+            cityCovidOverview.seoul,
+            cityCovidOverview.busan,
+            cityCovidOverview.daegu,
+            cityCovidOverview.incheon,
+            cityCovidOverview.gwangju,
+            cityCovidOverview.daegu,
+            cityCovidOverview.ulsan,
+            cityCovidOverview.sejong,
+            cityCovidOverview.gyeonggi,
+            cityCovidOverview.chungbuk,
+            cityCovidOverview.chungnam,
+            cityCovidOverview.gyeongbuk,
+            cityCovidOverview.gyeongnam,
+            cityCovidOverview.jeju,
+            cityCovidOverview.quarantine,
+        ]
+    }
+    
+    func configureChartView(covidOverviewList: [CovidOverview]) {
+        let entries = covidOverviewList.compactMap { [weak self] overview -> PieChartDataEntry? in
+            guard let self = self else {return nil}
+            return PieChartDataEntry(
+                value: self.removeFormatString(string: overview.newCase),
+                label: overview.countryName,
+                data:  overview
+            )
+        }
+        let dataSet = PieChartDataSet(entries: entries, label: "코로나 발생 현황")
+        dataSet.sliceSpace = 1
+        dataSet.entryLabelColor = .black
+        dataSet.valueTextColor = .black
+        dataSet.xValuePosition = .outsideSlice
+        dataSet.valueLinePart1OffsetPercentage = 0.8
+        dataSet.valueLinePart1Length = 0.2
+        dataSet.valueLinePart2Length = 0.3
+        
+        dataSet.colors = ChartColorTemplates.vordiplom() +
+        ChartColorTemplates.joyful() +
+        ChartColorTemplates.liberty() +
+        ChartColorTemplates.pastel() +
+        ChartColorTemplates.material()
+        
+        self.pieChartView.data = PieChartData(dataSet: dataSet)
+        self.pieChartView.spin(duration: 0.3, fromAngle: self.pieChartView.rotationAngle, toAngle: self.pieChartView.rotationAngle + 80)
+    }
+    
+    func removeFormatString(string: String) -> Double {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter.number(from: string)?.doubleValue ?? 0
+    }
+    
+    func configureStackView(koreaCovidOverview: CovidOverview) {
+        self.totalCaseLabel.text = "\(koreaCovidOverview.totalCase) 명"
+        self.newCaseLabel.text = "\(koreaCovidOverview.newCase) 명"
     }
     
     func fetchCovidOverview (
