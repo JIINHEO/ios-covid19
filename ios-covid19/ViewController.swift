@@ -16,11 +16,18 @@ class ViewController: UIViewController {
     @IBOutlet weak var newCaseLabel: UILabel!
     @IBOutlet weak var pieChartView: PieChartView!
     
+    @IBOutlet weak var labelStackView: UIStackView!
+    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.indicatorView.startAnimating()
         self.fetchCovidOverview(completionHandler: { [weak self] result in
             guard let self = self else {return}
+            self.indicatorView.stopAnimating()
+            self.indicatorView.isHidden = true
+            self.labelStackView.isHidden = false
+            self.pieChartView.isHidden = false
             switch result {
             case let .success(result):
                 // Alamofire completionHandler 핸들러는 메인스레드에서 작동하기 때문에
