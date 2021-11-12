@@ -20,6 +20,8 @@
 		E8DD8180273BA07700723037 /* ios_covid19UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DD817F273BA07700723037 /* ios_covid19UITests.swift */; };
 		E8DD8182273BA07700723037 /* ios_covid19UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DD8181273BA07700723037 /* ios_covid19UITestsLaunchTests.swift */; };
 		E8DD818F273BD7E600723037 /* CovidDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DD818E273BD7E600723037 /* CovidDetailViewController.swift */; };
+		E8DD8191273CD80F00723037 /* CityCovidOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DD8190273CD80F00723037 /* CityCovidOverview.swift */; };
+		E8DD8192273CF0CA00723037 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DD8162273BA07600723037 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,7 @@
 		E8DD817F273BA07700723037 /* ios_covid19UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_covid19UITests.swift; sourceTree = "<group>"; };
 		E8DD8181273BA07700723037 /* ios_covid19UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_covid19UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E8DD818E273BD7E600723037 /* CovidDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidDetailViewController.swift; sourceTree = "<group>"; };
+		E8DD8190273CD80F00723037 /* CityCovidOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCovidOverview.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +149,7 @@
 				E8DD8162273BA07600723037 /* ViewController.swift */,
 				E8DD8164273BA07600723037 /* Main.storyboard */,
 				E8DD818E273BD7E600723037 /* CovidDetailViewController.swift */,
+				E8DD8190273CD80F00723037 /* CityCovidOverview.swift */,
 				E8DD8167273BA07700723037 /* Assets.xcassets */,
 				E8DD8169273BA07700723037 /* LaunchScreen.storyboard */,
 				E8DD816C273BA07700723037 /* Info.plist */,
@@ -412,6 +416,7 @@
 				E8DD8163273BA07600723037 /* ViewController.swift in Sources */,
 				E8DD818F273BD7E600723037 /* CovidDetailViewController.swift in Sources */,
 				E8DD815F273BA07600723037 /* AppDelegate.swift in Sources */,
+				E8DD8191273CD80F00723037 /* CityCovidOverview.swift in Sources */,
 				E8DD8161273BA07600723037 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -428,6 +433,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8DD8192273CF0CA00723037 /* ViewController.swift in Sources */,
 				E8DD8182273BA07700723037 /* ios_covid19UITestsLaunchTests.swift in Sources */,
 				E8DD8180273BA07700723037 /* ios_covid19UITests.swift in Sources */,
 			);
